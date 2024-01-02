@@ -1,12 +1,12 @@
 # Hackathon-Project
 
 **Table of Contents**
-- Live Link
-- About The Project
-- Wiki
-- Technology Stack
-- Features
-- Future Ideas
+- [Live Link](#live-link)
+- [About The Project](#about-the-project)
+- [Wiki](#wiki)
+- [Technology Stack](#technology-stack)
+- [Features](#features)
+- [Future Ideas](#future-features)
 
 ## Live Link
 Access Product: Link
@@ -15,7 +15,7 @@ Access Product: Link
 Online Learning Platform/Community aimed to support teachings being able to gain access to materials and provide classroom support.
 
 ## Wiki
-
+Access Wiki: Click on Wiki Tab or [This Link](https://github.com/crystalchavez99/Hackathon-Project/wiki)
 
 ## Technology Stack
 * Angular 16+
