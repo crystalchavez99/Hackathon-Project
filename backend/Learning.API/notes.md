@@ -1,4 +1,6 @@
 # Review as I go
+
+## Project Web API Structure
 * Solution is an architecture for organizing projects
 	* One Solution can have multiple projects
 * Below the solution file is the project file
@@ -19,3 +21,10 @@
 		* By using pipeline, add middleware which handles requests and reponses
 		* configured by default
 
+## Routing
+* Routing is the process of matchin incomin http requests to action methods that handle it
+* It used to map URL of request to controller then its action method
+
+## Domain Models:
+* So far I have courses, material, students, and teacher. For now I want to focus on courses and material. 
+* For ID property put GUID for unique identifier
