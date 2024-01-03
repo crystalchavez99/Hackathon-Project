@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Course } from '../../models/course';
+import { CourseService } from '../../services/course.service';
 
 @Component({
   selector: 'app-add-course',
@@ -8,7 +9,7 @@ import { Course } from '../../models/course';
 })
 export class AddCourseComponent {
   model: Course;
-  constructor(){
+  constructor(private courseService: CourseService){
     this.model = {
       name: '',
       level: '',
@@ -16,6 +17,10 @@ export class AddCourseComponent {
     }
   }
   submit(){
-    console.log(this.model)
+    this.courseService.addCourse(this.model).subscribe({
+      next: (response) =>{
+        console.log('Success!')
+      }
+    });
   }
 }
