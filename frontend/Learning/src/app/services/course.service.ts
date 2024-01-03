@@ -11,6 +11,6 @@ export class CourseService {
   constructor(private http:HttpClient) { }
 
   addCourse(model: Course): Observable<void>{
-    return this.http.post<void>("https://localhost:7232//courses", model);
+    return this.http.post<void>("https://localhost:7232/api/courses", model);
   }
 }
