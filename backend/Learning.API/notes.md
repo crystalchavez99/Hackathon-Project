@@ -28,3 +28,36 @@
 ## Domain Models:
 * So far I have courses, material, students, and teacher. For now I want to focus on courses and material. 
 * For ID property put GUID for unique identifier
+
+## Install NuGet for entity framework Core
+* Need entity framework core to creeate database that is needed for our app
+* Which will have the structure of our models to put in db
+
+## Create DbContext Class
+* Maintain coneection to db
+* Track Changes
+* Perform CRUD
+* Bridge between model and domain
+* Controller <- -> DbContext <- -> Database
+* It is the primary class responsible for interacting with db and performing crud on the db ablrd
+* Create DbContext Class
+	* Inherits from DbContext, must important Microsoft.EntityFrameworkCore
+	* Create constructor which takes options and passes to base class
+	* Now we want the context or collection as properties
+
+## Add Connection String To DB in AppSettings.json
+* Inside App.Settings.json, afer hosts we will put the connectionstrings property
+
+## Dependency Injection
+* Design pattern
+* Built into .NET Core
+* Responsible for create and manage instnaces
+
+## Running EF Core Migrations
+* Time to run EF core migrations
+	* Will create db with the name provided inside connection string and create db inside the SQL server
+* Click on tools, Nuget, and then Package Manager Console
+	* Type Add-Migration "Initial Migration"
+		* Creates a script that framework work can use to create a later on SQL script and create db
+		* This now creates a Migration folder with the files, which has the code to create the tables
+		* 

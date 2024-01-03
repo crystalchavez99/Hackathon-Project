@@ -8,6 +8,6 @@
         public string? Link { get; set; }
 
         public bool? IsDue { get; set; }
-        public DateOnly? DueDate { get; set; }
+        //public DateOnly? DueDate { get; set; }
     }
 }
