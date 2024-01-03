@@ -9,8 +9,9 @@
             <h5 class="card-title">{{course.name}}</h5>
             <p class="card-text">{{course.level}}</p>
             <p class="card-text">{{course.schoolYear}}</p>
-            <div class="border-top d-flex justify-content-end">
+            <div class="border-top d-flex justify-content-end align-items-center">
                 <a [routerLink]="['/courses', course.id]" class="card-link" style="text-align: right;">Open Class</a>
+
             </div>
         </div>
     </div>

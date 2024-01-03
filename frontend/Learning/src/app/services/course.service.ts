@@ -20,4 +20,10 @@ export class CourseService {
   addCourse(model: Course): Observable<void>{
     return this.http.post<void>("https://localhost:7232/api/courses", model);
   }
+  deleteCourse(id:string): Observable<void>{
+    return this.http.delete<void>(`https://localhost:7232/api/courses/${id}`)
+  }
+  updateCourse(id: string, model: Course): Observable<Course>{
+    return this.http.put<Course>(`https://localhost:7232/api/courses/${id}`, model)
+  }
 }
