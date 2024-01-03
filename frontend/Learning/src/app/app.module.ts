@@ -8,13 +8,15 @@ import { CourseListComponent } from './components/course-list/course-list.compon
 import { AddCourseComponent } from './components/add-course/add-course.component';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { CourseDetailsComponent } from './components/course-details/course-details.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     NavbarComponent,
     CourseListComponent,
-    AddCourseComponent
+    AddCourseComponent,
+    CourseDetailsComponent
   ],
   imports: [
     BrowserModule,
