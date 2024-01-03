@@ -60,4 +60,15 @@
 	* Type Add-Migration "Initial Migration"
 		* Creates a script that framework work can use to create a later on SQL script and create db
 		* This now creates a Migration folder with the files, which has the code to create the tables
-		* 
+	* Type Update-Database
+		* EF Core will read file and have connection with SQL Server and if DB does not exist it will create one
+
+## Create Controllers
+* To create CRUD endpoints we need controllers
+* Right click controllers folder, click add controller, make sure on API, and set empty
+* We will see it has the shell ready where it will have imports and inherit from ControllerBase
+
+## DTO
+* Data Transfer Objects
+* Used to transfer data between layers
+* 
