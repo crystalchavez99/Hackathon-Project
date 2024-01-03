@@ -1,4 +1,5 @@
-﻿using Learning.API.Data;
+﻿using Azure;
+using Learning.API.Data;
 using Learning.API.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -21,5 +22,63 @@ namespace Learning.API.Controllers
         {
             return Ok(await _context.Courses.ToListAsync());
         }
+
+        [HttpGet("{id}")]
+        public async Task<ActionResult<List<Course>>> GetCourse(int id)
+        {
+            var found = await _context.Courses.FindAsync(id);
+            if (found == null)
+            {
+                return BadRequest();
+            }
+            return Ok(found);
+        }
+
+        [HttpPost]
+        public async Task<ActionResult<List<Course>>> CreateCourse(Course course)
+        {
+            if (course == null)
+            {
+                return BadRequest();
+            }
+            _context.Courses.Add(course);
+            await _context.SaveChangesAsync();
+
+            return Ok(await _context.Courses.ToListAsync());
+        }
+
+        [HttpPut("{id}")]
+        public async Task<ActionResult<List<Course>>> UpdateCourse(int id, Course course)
+        {
+            var putCourse = await _context.Courses.FindAsync(id);
+            if (putCourse == null)
+            {
+                return BadRequest();
+            }
+            
+            putCourse.Id = course.Id;
+            putCourse.Name = course.Name;
+            putCourse.Level = course.Level;
+            putCourse.SchoolYear = course.SchoolYear;
+            await _context.SaveChangesAsync();
+            return Ok(await _context.Courses.ToListAsync());
+
+        }
+
+        [HttpDelete("{id}")]
+        public async Task<ActionResult<List<Course>>> DeleteCourse(int id)
+        {
+            var deleteCourse = await _context.Courses.FindAsync(id);
+            if (deleteCourse == null)
+            {
+                return BadRequest();
+            }
+            _context.Courses.Remove(deleteCourse);
+            await _context.SaveChangesAsync();
+            return Ok(await _context.Courses.ToListAsync());
+
+        }
     }
+
+   
 }
