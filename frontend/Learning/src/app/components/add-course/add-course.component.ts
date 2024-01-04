@@ -11,7 +11,7 @@ import { Router } from '@angular/router';
 })
 export class AddCourseComponent implements OnDestroy{
   model: Course;
-  private addCourseSub?: Subscription;
+  addCourseSub?: Subscription;
   constructor(private courseService: CourseService, private router: Router){
     this.model = {
       name: '',
