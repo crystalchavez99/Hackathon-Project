@@ -56,7 +56,7 @@ namespace Learning.API.Controllers
                 return BadRequest();
             }
             
-            putCourse.Id = course.Id;
+            //putCourse.Id = course.Id;
             putCourse.Name = course.Name;
             putCourse.Level = course.Level;
             putCourse.SchoolYear = course.SchoolYear;
