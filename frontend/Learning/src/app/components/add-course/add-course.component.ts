@@ -2,6 +2,7 @@ import { Component, OnDestroy } from '@angular/core';
 import { Course } from '../../models/course';
 import { CourseService } from '../../services/course.service';
 import { Subscription } from 'rxjs';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-add-course',
@@ -10,8 +11,8 @@ import { Subscription } from 'rxjs';
 })
 export class AddCourseComponent implements OnDestroy{
   model: Course;
-  private addCourseSub?: Subscription;
-  constructor(private courseService: CourseService){
+  addCourseSub?: Subscription;
+  constructor(private courseService: CourseService, private router: Router){
     this.model = {
       name: '',
       level: '',
@@ -22,7 +23,7 @@ export class AddCourseComponent implements OnDestroy{
   submit(){
     this.addCourseSub = this.courseService.addCourse(this.model).subscribe({
       next: (response) =>{
-        console.log('Success!')
+        this.router.navigateByUrl('/courses')
       }
     });
   }
