@@ -13,9 +13,9 @@ namespace Learning.API.Models
         [Required]
         public string? SchoolYear { get; set; }
 
-        //public int? TeacherId { get; set; }
-        //[ForeignKey("TeacherId")]
-        //public Teacher? Teacher { get; set; }
+        public int? TeacherId { get; set; }
+        [ForeignKey("TeacherId")]
+        public Teacher? Teacher { get; set; }
         //public ICollection<Enrollment>? Enrollments { get; set; }
     }
 }
