@@ -5,7 +5,7 @@
 namespace Learning.API.Migrations
 {
     /// <inheritdoc />
-    public partial class ChangeTeacherIdMakeNullable : Migration
+    public partial class RemovedUserScaffold : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)

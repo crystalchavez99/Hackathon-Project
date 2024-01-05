@@ -19,34 +19,24 @@ namespace Learning.API.Data
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<User>()
-                .ToTable("User")
-                .HasKey(u => u.Id);
-
-            modelBuilder.Entity<Student>()
-                .HasBaseType<User>();
+            base.OnModelCreating(modelBuilder);
+    
 
 
 
-            modelBuilder.Entity<Teacher>()
-                .HasBaseType<User>();
-
-
-            modelBuilder.Entity<Course>()
+/*modelBuilder.Entity<Course>()
                 .HasKey(course => course.Id);
-
-           /* 
-            * modelBuilder.Entity<Course>()
+ modelBuilder.Entity<Course>()
                 .HasOne(c => c.Teacher)
                 .WithMany(t => t.Courses)
-                .HasForeignKey(course => course.TeacherId).OnDelete(DeleteBehavior.NoAction);
+                .HasForeignKey(course => course.TeacherId).OnDelete(DeleteBehavior.Restrict);
             modelBuilder.Entity<Teacher>()
                 .HasMany(teacher => teacher.Courses)
                 .WithOne(course => course.Teacher)
                 .HasForeignKey(course => course.TeacherId).
-                OnDelete(DeleteBehavior.NoAction);*/
+                OnDelete(DeleteBehavior.Restrict);
 
-
+            
             modelBuilder.Entity<Enrollment>()
                 .HasKey(enroll => enroll.Id);
 
@@ -60,7 +50,7 @@ namespace Learning.API.Data
             modelBuilder.Entity<Enrollment>()
                 .HasOne(enrollment => enrollment.Course)
                 .WithMany(enrollment => enrollment.Enrollments)
-                .HasForeignKey(enrollment => enrollment.CourseId);
+                .HasForeignKey(enrollment => enrollment.CourseId);*/
 
         }
     }
