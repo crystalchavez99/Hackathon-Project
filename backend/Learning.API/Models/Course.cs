@@ -11,5 +11,9 @@ namespace Learning.API.Models
         public string Level { get; set; }
         [Required]
         public string SchoolYear { get; set; }
+
+        public int TeacherId { get; set; }
+        public Teacher Teacher { get; set; }
+        public ICollection<Enrollment> Enrollments { get; set; }
     }
 }

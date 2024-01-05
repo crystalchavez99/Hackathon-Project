@@ -21,7 +21,8 @@ namespace Learning.API.Models
         public byte[] PasswordHash { get; set; }
 
         public byte[] PasswordSalt { get; set; }
-        [Required]
-        public UserType Type { get; set; }
+       // [Required]
+       // public UserType Type { get; set; }
+
     }
 }
