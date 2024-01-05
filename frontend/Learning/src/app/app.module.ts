@@ -12,6 +12,7 @@ import { CourseDetailsComponent } from './components/course-details/course-detai
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { EditComponentComponent } from './components/edit-component/edit-component.component';
 import { LoginComponent } from './login/login.component';
+import { HomeComponent } from './home/home.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { LoginComponent } from './login/login.component';
     AddCourseComponent,
     CourseDetailsComponent,
     EditComponentComponent,
-    LoginComponent
+    LoginComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,

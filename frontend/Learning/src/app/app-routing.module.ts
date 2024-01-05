@@ -5,8 +5,13 @@ import { AddCourseComponent } from './components/add-course/add-course.component
 import { CourseDetailsComponent } from './components/course-details/course-details.component';
 import { EditComponentComponent } from './components/edit-component/edit-component.component';
 import { LoginComponent } from './login/login.component';
+import { HomeComponent } from './home/home.component';
 
 const routes: Routes = [
+  {
+    path: '',
+    component: HomeComponent
+  },
   {
     path: 'courses',
     component: CourseListComponent
