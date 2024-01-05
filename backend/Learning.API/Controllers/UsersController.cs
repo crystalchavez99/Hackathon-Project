@@ -1,4 +1,4 @@
-﻿using Learning.API.Data;
+﻿/*using Learning.API.Data;
 using Learning.API.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
@@ -21,7 +21,7 @@ namespace Learning.API.Controllers
         }
 
         [HttpPost("register")]
-        public async Task<ActionResult<User>> Register(string name, string email, UserType type, string password)
+        public async Task<ActionResult<User>> Register(string name, string email, string password)
         {
             if (await UserExists(email)) return BadRequest("Email is taken.");
             var hash = new HMACSHA512();
@@ -29,7 +29,6 @@ namespace Learning.API.Controllers
             {
                 Name = name,
                 Email = email,
-                Type = type,
                 PasswordHash = hash.ComputeHash(Encoding.UTF8.GetBytes(password)),
                 PasswordSalt = hash.Key
             };
@@ -65,3 +64,4 @@ namespace Learning.API.Controllers
         }
     }
 }
+*/
