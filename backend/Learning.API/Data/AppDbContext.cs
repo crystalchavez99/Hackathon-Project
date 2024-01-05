@@ -10,5 +10,7 @@ namespace Learning.API.Data
         public DbSet<Material> Materials { get; set; }
 
         public DbSet<Course> Courses { get; set; }
+
+        public DbSet<User> Users { get; set; }
     }
 }
