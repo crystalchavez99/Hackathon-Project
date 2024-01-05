@@ -12,6 +12,7 @@ namespace Learning.API.Models
         public byte[]? PasswordHash { get; set; }
 
         public byte[]? PasswordSalt { get; set; }
+
         public ICollection<Enrollment>? Enrollments { get; set; }
     }
 }

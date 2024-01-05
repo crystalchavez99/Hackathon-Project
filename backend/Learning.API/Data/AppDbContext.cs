@@ -20,11 +20,22 @@ namespace Learning.API.Data
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
+
             modelBuilder.Entity<Course>()
                .HasOne(c => c.Teacher)
                .WithMany(t => t.Courses)
                .HasForeignKey(course => course.TeacherId)
                .OnDelete(DeleteBehavior.Restrict);
+
+            modelBuilder.Entity<Enrollment>()
+                            .HasOne(enrollment => enrollment.Student)
+                            .WithMany(enrollment => enrollment.Enrollments)
+                            .HasForeignKey(enrollment => enrollment.StudentId);
+
+            modelBuilder.Entity<Enrollment>()
+                .HasOne(enrollment => enrollment.Course)
+                .WithMany(enrollment => enrollment.Enrollments)
+                .HasForeignKey(enrollment => enrollment.CourseId);
 
 
 

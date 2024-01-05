@@ -16,6 +16,7 @@ namespace Learning.API.Models
         public int? TeacherId { get; set; }
         [ForeignKey("TeacherId")]
         public Teacher? Teacher { get; set; }
-        //public ICollection<Enrollment>? Enrollments { get; set; }
+
+        public ICollection<Enrollment>? Enrollments { get; set; }
     }
 }
