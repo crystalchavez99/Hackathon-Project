@@ -21,7 +21,7 @@ namespace Learning.API.Controllers
         [HttpGet]
         public async Task<ActionResult<List<Course>>> GetCourses()
         {
-            return Ok(await _context.Courses.ToListAsync());
+            return Ok(await _context.Courses.Include(c => c.Teacher).ToListAsync());
         }
 
         [HttpGet("{id}")]
