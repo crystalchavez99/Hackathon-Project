@@ -28,6 +28,7 @@ namespace Learning.API.Controllers
         public async Task<ActionResult<List<Course>>> GetCourse(int id)
         {
             var found = await _context.Courses.FindAsync(id);
+            _context.Entry(found).Reference(c => c.Teacher).Load();
             if (found == null)
             {
                 return BadRequest();
