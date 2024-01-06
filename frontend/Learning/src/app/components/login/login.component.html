@@ -1,0 +1,21 @@
+<div class="container">
+    <div class="border">
+        <h1>Login Teacher Account</h1>
+        <p>Enter your name, email, and password.</p>
+    </div>
+    <form class="border border-primary" #form="ngForm" (ngSubmit)="submit()">
+        <div class="mt-1">
+            <div class="mt-3">
+                <label for="" class="form-label">Email</label>
+            <input type="email" name="teacherEmail" id="teacherEmail" class="form-control" placeholder="Enter a email" [(ngModel)]="model.email">
+            </div>
+            <div class="mt-3">
+                <label for="" class="form-label">Password</label>
+            <input type="password" name="teacherPassword" id="teacherPassword" class="form-control" placeholder="Enter password" [(ngModel)]="model.password">
+            </div>
+            <div class="mt-3">
+                <button type="submit" class="btn btn-success">Submit</button>
+            </div>
+        </div>
+    </form>
+</div>

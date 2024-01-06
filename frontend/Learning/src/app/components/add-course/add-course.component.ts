@@ -16,7 +16,7 @@ export class AddCourseComponent implements OnDestroy{
     this.model = {
       name: '',
       level: '',
-      schoolYear: ''
+      schoolYear: '',
     }
   }
 

@@ -18,6 +18,7 @@ export class CourseService {
     return this.http.get<Course>(`https://localhost:7232/api/courses/${id}`);
   }
   addCourse(model: Course): Observable<void>{
+    console.log(model)
     return this.http.post<void>("https://localhost:7232/api/courses", model);
   }
   deleteCourse(id:string): Observable<void>{

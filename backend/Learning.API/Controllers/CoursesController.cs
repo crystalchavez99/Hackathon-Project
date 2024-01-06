@@ -1,6 +1,7 @@
 ﻿using Azure;
 using Learning.API.Data;
 using Learning.API.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -20,13 +21,14 @@ namespace Learning.API.Controllers
         [HttpGet]
         public async Task<ActionResult<List<Course>>> GetCourses()
         {
-            return Ok(await _context.Courses.ToListAsync());
+            return Ok(await _context.Courses.Include(c => c.Teacher).ToListAsync());
         }
 
         [HttpGet("{id}")]
         public async Task<ActionResult<List<Course>>> GetCourse(int id)
         {
             var found = await _context.Courses.FindAsync(id);
+            _context.Entry(found).Reference(c => c.Teacher).Load();
             if (found == null)
             {
                 return BadRequest();
@@ -35,12 +37,13 @@ namespace Learning.API.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult<List<Course>>> CreateCourse(Course course)
+        public async Task<ActionResult<List<Course>>> CreateCourse([FromBody] Course course)
         {
-            if (course == null)
-            {
-                return BadRequest();
-            }
+            /*var newCourse = new Course { 
+                Name = name, 
+                Level = level,
+                SchoolYear = schoolYear
+        };*/
             _context.Courses.Add(course);
             await _context.SaveChangesAsync();
 

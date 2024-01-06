@@ -28,6 +28,7 @@ export class CourseDetailsComponent implements OnInit{
           .subscribe({
             next: (result: Course) =>{
               this.course = result;
+              console.log(this.course)
             }
           })
         }

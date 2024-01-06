@@ -11,6 +11,9 @@ import { HttpClientModule } from '@angular/common/http';
 import { CourseDetailsComponent } from './components/course-details/course-details.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { EditComponentComponent } from './components/edit-component/edit-component.component';
+import { RegisterComponent } from './components/register/register.component';
+import { HomeComponent } from './home/home.component';
+import { LoginComponent } from './components/login/login.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +22,10 @@ import { EditComponentComponent } from './components/edit-component/edit-compone
     CourseListComponent,
     AddCourseComponent,
     CourseDetailsComponent,
-    EditComponentComponent
+    EditComponentComponent,
+    RegisterComponent,
+    HomeComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
