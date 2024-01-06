@@ -3,5 +3,4 @@ export class Course{
     name!: string;
     level!: string;
     schoolYear!: string;
-    teacher!: Object;
 }

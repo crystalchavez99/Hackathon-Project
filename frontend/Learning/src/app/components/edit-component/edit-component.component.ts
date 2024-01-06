@@ -38,8 +38,6 @@ export class EditComponentComponent implements OnInit, OnDestroy{
       name: this.course?.name || '',
       level: this.course?.level || '',
       schoolYear: this.course?.schoolYear || '',
-      teacher: this.course?.teacher || ''
-
     }
     if(this.id){
       this.editCourseSub = this.courseService.updateCourse(this.id, updateCourse)

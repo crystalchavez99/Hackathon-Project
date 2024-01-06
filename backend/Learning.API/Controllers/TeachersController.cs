@@ -19,15 +19,15 @@ namespace Learning.API.Controllers
         }
 
         [HttpPost("register")]
-        public async Task<ActionResult<Teacher>> Register(string name, string email, string password)
+        public async Task<ActionResult<Teacher>> Register([FromForm] Teacher teacher)
         {
-            if (await TeacherExists(email)) return BadRequest("Email is taken.");
+            if (await TeacherExists(teacher.Email)) return BadRequest("Email is taken.");
             var hash = new HMACSHA512();
             var newTeacher = new Teacher
             {
-                Name = name,
-                Email = email,
-                PasswordHash = hash.ComputeHash(Encoding.UTF8.GetBytes(password)),
+                Name = name.ToString(),
+                Email = email.ToString(),
+                PasswordHash = hash.ComputeHash(Encoding.UTF8.GetBytes(password.ToString()),
                 PasswordSalt = hash.Key
             };
             _context.Teachers.Add(newTeacher);

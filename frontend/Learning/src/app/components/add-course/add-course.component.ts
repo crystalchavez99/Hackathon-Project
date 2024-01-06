@@ -17,7 +17,6 @@ export class AddCourseComponent implements OnDestroy{
       name: '',
       level: '',
       schoolYear: '',
-      teacher: ''
     }
   }
 

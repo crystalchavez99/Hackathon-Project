@@ -37,12 +37,13 @@ namespace Learning.API.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult<List<Course>>> CreateCourse(Course course)
+        public async Task<ActionResult<List<Course>>> CreateCourse([FromBody] Course course)
         {
-            if (course == null)
-            {
-                return BadRequest();
-            }
+            /*var newCourse = new Course { 
+                Name = name, 
+                Level = level,
+                SchoolYear = schoolYear
+        };*/
             _context.Courses.Add(course);
             await _context.SaveChangesAsync();
 
