@@ -1,5 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
+
 
 namespace Learning.API.Models
 {
@@ -18,5 +18,6 @@ namespace Learning.API.Models
         public Teacher? Teacher { get; set; }
 
         public ICollection<Enrollment>? Enrollments { get; set; }
+
     }
 }
