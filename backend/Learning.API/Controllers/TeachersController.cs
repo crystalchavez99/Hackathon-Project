@@ -21,7 +21,6 @@ namespace Learning.API.Controllers
         [HttpPost("register")]
         public async Task<ActionResult<Teacher>> Register([FromBody] Teacher teacher)
         {
-            Console.WriteLine(teacher);
             if (await TeacherExists(teacher.Email)) return BadRequest("Email is taken.");
             var hash = new HMACSHA512();
             var user = new AppUser
@@ -36,7 +35,7 @@ namespace Learning.API.Controllers
                 Email = teacher.Email,
                 Password = hash.ComputeHash(Encoding.UTF8.GetBytes(teacher.Password))
             };*/
-            _context.Teachers.Add(teacher);
+            //_context.Teachers.Add(teacher);
             _context.AppUsers.Add(user);
             await _context.SaveChangesAsync();
             return Ok(teacher);

@@ -4,8 +4,9 @@ import { CourseListComponent } from './components/course-list/course-list.compon
 import { AddCourseComponent } from './components/add-course/add-course.component';
 import { CourseDetailsComponent } from './components/course-details/course-details.component';
 import { EditComponentComponent } from './components/edit-component/edit-component.component';
-import { LoginComponent } from './login/login.component';
+import { RegisterComponent } from './components/register/register.component';
 import { HomeComponent } from './home/home.component';
+import { LoginComponent } from './components/login/login.component';
 
 const routes: Routes = [
   {
@@ -27,6 +28,10 @@ const routes: Routes = [
   {
     path: 'courses/:id/edit',
     component: EditComponentComponent
+  },
+  {
+    path: 'users/register',
+    component: RegisterComponent
   },
   {
     path: 'login',

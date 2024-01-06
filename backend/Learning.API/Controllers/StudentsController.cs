@@ -36,7 +36,7 @@ namespace Learning.API.Controllers
                 Email = teacher.Email,
                 Password = hash.ComputeHash(Encoding.UTF8.GetBytes(teacher.Password))
             };*/
-            _context.Students.Add(student);
+           // _context.Students.Add(student);
             _context.AppUsers.Add(user);
             await _context.SaveChangesAsync();
             return Ok(user);

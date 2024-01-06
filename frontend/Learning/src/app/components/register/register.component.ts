@@ -1,17 +1,17 @@
 import { Component } from '@angular/core';
 import { Subscription } from 'rxjs';
-import { Teacher } from '../models/teacher';
-import { TeacherService } from '../services/teacher.service';
+import { Teacher } from '../../models/teacher';
+import { TeacherService } from '../../services/teacher.service';
 import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-login',
-  templateUrl: './login.component.html',
-  styleUrl: './login.component.css'
+  selector: 'app-register',
+  templateUrl: './register.component.html',
+  styleUrl: './register.component.css'
 })
-export class LoginComponent {
+export class RegisterComponent {
   model: Teacher;
-  loginTeacherSub?: Subscription;
+  registerTeacherSub?: Subscription;
   constructor(private teacherService: TeacherService, private router: Router){
     this.model ={
       name: '',
@@ -20,7 +20,7 @@ export class LoginComponent {
     }
   }
   submit(){
-    this.loginTeacherSub = this.teacherService.registerTeacher(this.model).subscribe({
+    this.registerTeacherSub = this.teacherService.registerTeacher(this.model).subscribe({
       next: (response) =>{
         this.router.navigateByUrl('/')
       }
@@ -28,6 +28,6 @@ export class LoginComponent {
   }
 
   ngOnDestroy(): void {
-   this.loginTeacherSub?.unsubscribe();
+   this.registerTeacherSub?.unsubscribe();
   }
 }
