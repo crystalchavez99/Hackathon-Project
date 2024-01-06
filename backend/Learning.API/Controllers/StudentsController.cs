@@ -20,42 +20,48 @@ namespace Learning.API.Controllers
         }
 
         [HttpPost("register")]
-        public async Task<ActionResult<Student>> Register(string name, string email, string password)
+        public async Task<ActionResult<Student>> Register([FromForm] Student student)
         {
-            if (await StudentExists(email)) return BadRequest("Email is taken.");
+            if (await StudentExists(student.Email)) return BadRequest("Email is taken.");
             var hash = new HMACSHA512();
-            var newStudent= new Student
+            var user = new AppUser
             {
-                Name = name,
-                Email = email,
-                PasswordHash = hash.ComputeHash(Encoding.UTF8.GetBytes(password)),
+                Email = student.Email,
+                PasswordHash = hash.ComputeHash(Encoding.UTF8.GetBytes(student.Password)),
                 PasswordSalt = hash.Key
             };
-            _context.Students.Add(newStudent);
-            await _context.SaveChangesAsync();
-            return Ok(newStudent);
-        }
-
-        [HttpPost("login")]
-        public async Task<ActionResult<Student>> Login(string email, string password)
-        {
-            var student = await _context.Students.FirstOrDefaultAsync(s =>
-            s.Email == email);
-            _context.Entry(student).Collection(s => s.Enrollments).Load();
-            if (student == null) return Unauthorized("Invalid");
-            var saltDecode = new HMACSHA512(student.PasswordSalt);
-            var hashDecode = saltDecode.ComputeHash(Encoding.UTF8.GetBytes(password));
-
-            for (int i = 0; i < hashDecode.Length; i++)
+            /*var newTeacher = new Teacher
             {
-                if (hashDecode[i] != student.PasswordHash[i])
-                {
-                    return Unauthorized("Invalid password");
-                }
-            }
-
-            return Ok(student);
+                Name =teacher.Name,
+                Email = teacher.Email,
+                Password = hash.ComputeHash(Encoding.UTF8.GetBytes(teacher.Password))
+            };*/
+            _context.Students.Add(student);
+            _context.AppUsers.Add(user);
+            await _context.SaveChangesAsync();
+            return Ok(user);
         }
+
+        /* [HttpPost("login")]
+         public async Task<ActionResult<Student>> Login(string email, string password)
+         {
+             var student = await _context.Students.FirstOrDefaultAsync(s =>
+             s.Email == email);
+             _context.Entry(student).Collection(s => s.Enrollments).Load();
+             if (student == null) return Unauthorized("Invalid");
+             var saltDecode = new HMACSHA512(student.PasswordSalt);
+             var hashDecode = saltDecode.ComputeHash(Encoding.UTF8.GetBytes(password));
+
+             for (int i = 0; i < hashDecode.Length; i++)
+             {
+                 if (hashDecode[i] != student.PasswordHash[i])
+                 {
+                     return Unauthorized("Invalid password");
+                 }
+             }
+
+             return Ok(student);
+         }*/
 
 
         private async Task<bool> StudentExists(string email)

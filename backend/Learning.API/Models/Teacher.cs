@@ -10,9 +10,7 @@ namespace Learning.API.Models
         public string? Name { get; set; }
         [Required]
         public string? Email { get; set; }
-        public byte[]? PasswordHash { get; set; }
-
-        public byte[]? PasswordSalt { get; set; }
+        public string? Password { get; set; }
 
         [JsonIgnore]
         public ICollection<Course>? Courses { get; set; }

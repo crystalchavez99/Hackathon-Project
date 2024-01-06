@@ -17,6 +17,8 @@ namespace Learning.API.Data
 
         public DbSet<Enrollment> Enrollments { get; set; }
 
+        public DbSet<AppUser> AppUsers { get; set; }
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);

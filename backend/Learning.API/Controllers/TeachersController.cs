@@ -19,29 +19,36 @@ namespace Learning.API.Controllers
         }
 
         [HttpPost("register")]
-        public async Task<ActionResult<Teacher>> Register([FromForm] Teacher teacher)
+        public async Task<ActionResult<Teacher>> Register([FromBody] Teacher teacher)
         {
+            Console.WriteLine(teacher);
             if (await TeacherExists(teacher.Email)) return BadRequest("Email is taken.");
             var hash = new HMACSHA512();
-            var newTeacher = new Teacher
+            var user = new AppUser
             {
-                Name = name.ToString(),
-                Email = email.ToString(),
-                PasswordHash = hash.ComputeHash(Encoding.UTF8.GetBytes(password.ToString()),
+                Email = teacher.Email,
+                PasswordHash = hash.ComputeHash(Encoding.UTF8.GetBytes(teacher.Password)),
                 PasswordSalt = hash.Key
             };
-            _context.Teachers.Add(newTeacher);
+            /*var newTeacher = new Teacher
+            {
+                Name =teacher.Name,
+                Email = teacher.Email,
+                Password = hash.ComputeHash(Encoding.UTF8.GetBytes(teacher.Password))
+            };*/
+            _context.Teachers.Add(teacher);
+            _context.AppUsers.Add(user);
             await _context.SaveChangesAsync();
-            return Ok(newTeacher);
+            return Ok(teacher);
         }
 
-        [HttpPost("login")]
-        public async Task<ActionResult<Teacher>> Login(string email, string password)
+        /*[HttpPost("login")]
+        public async Task<ActionResult<Teacher>> Login([FromBody] Teacher teacher)
         {
-            var teacher = await _context.Teachers.FirstOrDefaultAsync(t =>
-            t.Email == email);
+            var t = await _context.Teachers.FirstOrDefaultAsync(t =>
+            t.Email == teacher.Email);
             if (teacher == null) return Unauthorized("Invalid");
-            var saltDecode = new HMACSHA512(teacher.PasswordSalt);
+            var saltDecode = new HMACSHA512(teacher.Password);
             var hashDecode = saltDecode.ComputeHash(Encoding.UTF8.GetBytes(password));
 
             for (int i = 0; i < hashDecode.Length; i++)
@@ -53,7 +60,7 @@ namespace Learning.API.Controllers
             }
 
             return Ok(teacher);
-        }
+        }*/
 
 
         private async Task<bool> TeacherExists(string email)
