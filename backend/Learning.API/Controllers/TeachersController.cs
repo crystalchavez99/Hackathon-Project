@@ -41,7 +41,7 @@ namespace Learning.API.Controllers
             return Ok(teacher);
         }
 
-       *[HttpPost("login")]
+       /*[HttpPost("login")]
         public async Task<ActionResult<AppUser>> Login([FromBody] Teacher teacher)
         {
             var t = await _context.Teachers.FirstOrDefaultAsync(t =>
@@ -59,7 +59,7 @@ namespace Learning.API.Controllers
             }
 
             return Ok(teacher);
-        }
+        }*/
 
 
         private async Task<bool> TeacherExists(string email)
