@@ -47,7 +47,7 @@ namespace Learning.API.Controllers
         {
             var teacher = await _context.Teachers.FirstOrDefaultAsync(t =>
             t.Email == user.Email);
-            if (teacher == null) return Unauthorized("Invalid");
+            if (teacher == null) return Unauthorized("Invalid Email");
             var saltDecode = new HMACSHA512(teacher.PasswordSalt);
             var hashDecode = saltDecode.ComputeHash(Encoding.UTF8.GetBytes(user.Password));
 
