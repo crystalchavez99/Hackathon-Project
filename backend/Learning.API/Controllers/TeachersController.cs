@@ -1,4 +1,5 @@
 ﻿using Learning.API.Data;
+using Learning.API.Interface;
 using Learning.API.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -12,14 +13,16 @@ namespace Learning.API.Controllers
     [ApiController]
     public class TeachersController : ControllerBase
     {
+        private readonly TokenService _tokenService;
         private readonly AppDbContext _context;
-        public TeachersController(AppDbContext context)
+        public TeachersController(AppDbContext context, TokenService tokenService)
         {
+            _tokenService = tokenService;
             _context = context;
         }
 
         [HttpPost("register")]
-        public async Task<ActionResult<Teacher>> Register(AppUser user)
+        public async Task<ActionResult<TokenUser>> Register(AppUser user)
         {
             if (await TeacherExists(user.Email)) return BadRequest("Email is taken.");
             var hash = new HMACSHA512();
@@ -39,11 +42,15 @@ namespace Learning.API.Controllers
             //_context.Teachers.Add(teacher);
             _context.Teachers.Add(teacher);
             await _context.SaveChangesAsync();
-            return Ok(teacher);
+            return new TokenUser
+            {
+                Email = teacher.Email,
+                Token = _tokenService.CreateToken(teacher)
+            };
         }
 
        [HttpPost("login")]
-        public async Task<ActionResult<AppUser>> Login([FromBody] AppUser user)
+        public async Task<ActionResult<TokenUser>> Login([FromBody] AppUser user)
         {
             var teacher = await _context.Teachers.FirstOrDefaultAsync(t =>
             t.Email == user.Email);
@@ -59,7 +66,11 @@ namespace Learning.API.Controllers
                 }
             }
 
-            return Ok(teacher);
+            return new TokenUser
+            {
+                Email = teacher.Email,
+                Token = _tokenService.CreateToken(teacher)
+            };
         }
 
 

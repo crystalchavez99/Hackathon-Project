@@ -10,7 +10,7 @@ namespace Learning.API.Interface
     {
         private readonly SymmetricSecurityKey _symmetricSecurityKey;
         public TokenService(IConfiguration configuration) { _symmetricSecurityKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(configuration["TokenKey"])); }
-        public string CreateToken(AppUser user) {
+        public string CreateToken(Teacher user) {
             var claims = new List<Claim>
             {
                 new Claim(JwtRegisteredClaimNames.Email, user.Email)
