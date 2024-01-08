@@ -20,14 +20,15 @@ namespace Learning.API.Controllers
         }
 
         [HttpPost("register")]
-        public async Task<ActionResult<Student>> Register([FromForm] Student student)
+        public async Task<ActionResult<Student>> Register([FromForm] AppUser user)
         {
-            if (await StudentExists(student.Email)) return BadRequest("Email is taken.");
+            if (await StudentExists(user.Email)) return BadRequest("Email is taken.");
             var hash = new HMACSHA512();
-            var user = new AppUser
+            var student = new Student
             {
-                Email = student.Email,
-                PasswordHash = hash.ComputeHash(Encoding.UTF8.GetBytes(student.Password)),
+                Name = user.Name,
+                Email = user.Email,
+                PasswordHash = hash.ComputeHash(Encoding.UTF8.GetBytes(user.Password)),
                 PasswordSalt = hash.Key
             };
             /*var newTeacher = new Teacher
@@ -37,7 +38,7 @@ namespace Learning.API.Controllers
                 Password = hash.ComputeHash(Encoding.UTF8.GetBytes(teacher.Password))
             };*/
            // _context.Students.Add(student);
-            _context.AppUsers.Add(user);
+            _context.Students.Add(student);
             await _context.SaveChangesAsync();
             return Ok(user);
         }
