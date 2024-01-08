@@ -1,4 +1,4 @@
-﻿using Learning.API.Data;
+﻿/*using Learning.API.Data;
 using Learning.API.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -62,4 +62,4 @@ namespace Learning.API.Controllers
             return await _context.Users.AnyAsync(user => user.Email == email);
         }
     }
-}
+}*/

@@ -10,8 +10,10 @@ import { TeacherService } from '../../services/teacher.service';
   styleUrl: './login.component.css'
 })
 export class LoginComponent {
-  model: Teacher;
+  model: any;
+  loggedIn = false;
   loginTeacherSub?: Subscription;
+  //static loggedIn: any = false;
   constructor(private teacherService: TeacherService, private router: Router){
     this.model ={
       name: '',
@@ -22,7 +24,12 @@ export class LoginComponent {
   submit(){
     this.loginTeacherSub = this.teacherService.loginTeacher(this.model).subscribe({
       next: (response) =>{
+        console.log(response)
+        this.loggedIn = true;
         this.router.navigateByUrl('/')
+      },
+      error: (e) =>{
+        console.log(e)
       }
     });
   }
