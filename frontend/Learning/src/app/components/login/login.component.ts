@@ -13,6 +13,7 @@ export class LoginComponent {
   model: Teacher;
   loggedIn = false;
   loginTeacherSub?: Subscription;
+  //static loggedIn: any = false;
   constructor(private teacherService: TeacherService, private router: Router){
     this.model ={
       name: '',
@@ -26,6 +27,9 @@ export class LoginComponent {
         console.log(response)
         this.loggedIn = true;
         this.router.navigateByUrl('/')
+      },
+      error: (e) =>{
+        console.log(e)
       }
     });
   }
