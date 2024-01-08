@@ -14,11 +14,20 @@ export class NavbarComponent {
   loggedIn = false;
   loginTeacherSub?: Subscription;
   constructor(private teacherService: TeacherService, private router: Router){
-    this.model ={
-      name: '',
-      email: '',
-      password: ''
-    }
+    // this.model ={
+    //   name: '',
+    //   email: '',
+    //   password: ''
+    // }
+  }
+  ngOnInit(): void{
+    this.getCurrentTeacher();
+  }
+  getCurrentTeacher(){
+    this.teacherService.currentTeacher$.subscribe({
+      next: teacher => this.loggedIn = !!teacher,
+      error: error => console.log(error)
+    })
   }
   submit(){
     this.loginTeacherSub = this.teacherService.loginTeacher(this.model).subscribe({
@@ -37,6 +46,7 @@ export class NavbarComponent {
    this.loginTeacherSub?.unsubscribe();
   }
   logout(){
+    this.teacherService.logoutTeacher();
     this.loggedIn = false;
   }
 }

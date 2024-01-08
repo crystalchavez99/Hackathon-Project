@@ -10,7 +10,7 @@ import { TeacherService } from '../../services/teacher.service';
   styleUrl: './login.component.css'
 })
 export class LoginComponent {
-  model: Teacher;
+  model: any;
   loggedIn = false;
   loginTeacherSub?: Subscription;
   //static loggedIn: any = false;
