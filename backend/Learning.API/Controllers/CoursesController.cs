@@ -11,6 +11,7 @@ namespace Learning.API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize]
     public class CoursesController : ControllerBase
     {
         private readonly AppDbContext _context;
@@ -24,6 +25,7 @@ namespace Learning.API.Controllers
             return Ok(await _context.Courses.Include(c => c.Teacher).ToListAsync());
         }
 
+        
         [HttpGet("{id}")]
         public async Task<ActionResult<List<Course>>> GetCourse(int id)
         {

@@ -11,6 +11,7 @@ import { TeacherService } from '../../services/teacher.service';
 })
 export class LoginComponent {
   model: Teacher;
+  loggedIn = false;
   loginTeacherSub?: Subscription;
   constructor(private teacherService: TeacherService, private router: Router){
     this.model ={
@@ -22,6 +23,8 @@ export class LoginComponent {
   submit(){
     this.loginTeacherSub = this.teacherService.loginTeacher(this.model).subscribe({
       next: (response) =>{
+        console.log(response)
+        this.loggedIn = true;
         this.router.navigateByUrl('/')
       }
     });
