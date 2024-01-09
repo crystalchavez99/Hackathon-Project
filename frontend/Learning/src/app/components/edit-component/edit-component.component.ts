@@ -63,6 +63,10 @@ export class EditComponentComponent implements OnInit, OnDestroy{
     }
   }
 
+  cancelEdit(): void{
+    this.router.navigateByUrl(`/courses`)
+  }
+
   ngOnDestroy(): void{
     this.editCourseSub?.unsubscribe();
   }
