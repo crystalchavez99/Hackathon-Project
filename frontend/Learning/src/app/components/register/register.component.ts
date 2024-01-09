@@ -17,6 +17,7 @@ export class RegisterComponent {
   registerStudentSub?: Subscription;
   isStudent = false;
   isTeacher = false;
+  errors: any;
   constructor(private teacherService: TeacherService, private router: Router, private studentService: StudentService){
     this.model ={
       name: '',
@@ -29,12 +30,18 @@ export class RegisterComponent {
       this.registerTeacherSub = this.teacherService.registerTeacher(this.model).subscribe({
         next: (response) =>{
           this.router.navigateByUrl('/')
+        },
+        error: e =>{
+          this.errors = e.error.errors;
         }
       });
     }else if(this.isStudent == true){
       this.registerStudentSub = this.studentService.registerStudent(this.model).subscribe({
         next: (response) =>{
           this.router.navigateByUrl('/')
+        },
+        error: e =>{
+          this.errors = e.error.errors;
         }
       });
     }
