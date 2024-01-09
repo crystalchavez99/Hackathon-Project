@@ -14,6 +14,7 @@ import { Teacher } from '../../models/teacher';
 export class AddCourseComponent implements OnDestroy{
   model: any = {};
   teacher: any = {};
+  errors: any;
   addCourseSub?: Subscription;
   constructor(private courseService: CourseService, private router: Router, private teacherService: TeacherService){
   }
@@ -36,6 +37,9 @@ export class AddCourseComponent implements OnDestroy{
     this.addCourseSub = this.courseService.addCourse(this.model).subscribe({
       next: (response) =>{
         this.router.navigateByUrl('/courses')
+      },
+      error: e =>{
+        this.errors = e.error.errors;
       }
     });
   }
