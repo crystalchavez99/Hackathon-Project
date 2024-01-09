@@ -30,6 +30,7 @@ export class CourseDetailsComponent implements OnInit{
           .subscribe({
             next: (result: Course) =>{
               this.course = result;
+              //this.teacher = this.course.teacher;
               console.log(this.course)
             }
           })

@@ -6,5 +6,5 @@ export class Course{
     level!: string;
     schoolYear!: string;
     teacherId?: number;
-    //teacher!: Teacher;
+    teacher?: Teacher;
 }
