@@ -73,6 +73,17 @@ namespace Learning.API.Controllers
             };
         }
 
+        [HttpGet("{email}")]
+        public async Task<ActionResult<List<Teacher>>> GetTeacher(string email)
+        {
+            var found = await _context.Teachers.FirstOrDefaultAsync(teacher => teacher.Email == email);
+            if (found == null)
+            {
+                return BadRequest();
+            }
+            return Ok(found);
+        }
+
 
         private async Task<bool> TeacherExists(string email)
         {
