@@ -20,7 +20,6 @@ export class AppComponent {
     const userString = localStorage.getItem('user');
     if(!userString) return;
     const user: AppUser = JSON.parse(userString);
-    console.log(`scu`, user)
     this.teacherService.setCurrentTeacher(user);
   }
 }

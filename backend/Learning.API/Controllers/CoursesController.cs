@@ -11,6 +11,7 @@ namespace Learning.API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize]
     public class CoursesController : ControllerBase
     {
         private readonly AppDbContext _context;
