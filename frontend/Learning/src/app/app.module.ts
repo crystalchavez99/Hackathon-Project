@@ -14,6 +14,7 @@ import { EditComponentComponent } from './components/edit-component/edit-compone
 import { RegisterComponent } from './components/register/register.component';
 import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './components/login/login.component';
+import { ProfileComponent } from './components/profile/profile.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { LoginComponent } from './components/login/login.component';
     EditComponentComponent,
     RegisterComponent,
     HomeComponent,
-    LoginComponent
+    LoginComponent,
+    ProfileComponent
   ],
   imports: [
     BrowserModule,

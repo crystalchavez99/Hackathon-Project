@@ -3,6 +3,8 @@ import { TeacherService } from '../../services/teacher.service';
 import { LoginComponent } from '../login/login.component';
 import { Subscription } from 'rxjs';
 import { Router } from '@angular/router';
+import { StudentService } from '../../services/student.service';
+
 
 @Component({
   selector: 'app-navbar',
@@ -13,7 +15,9 @@ export class NavbarComponent {
   model: any = {};
   loggedIn = false;
   loginTeacherSub?: Subscription;
-  constructor(private teacherService: TeacherService, private router: Router){
+  loginStudentSub?: Subscription;
+  constructor(private teacherService: TeacherService, private router: Router, private studentService: StudentService){
+
     // this.model ={
     //   name: '',
     //   email: '',
@@ -40,6 +44,16 @@ export class NavbarComponent {
         console.log(e)
       }
     });
+    this.loginStudentSub = this.studentService.loginStudent(this.model).subscribe({
+      next: (response) =>{
+        console.log(response)
+        this.loggedIn = true;
+        this.router.navigateByUrl('/')
+      },
+      error: (e) =>{
+        console.log(e)
+      }
+    });
   }
 
   ngOnDestroy(): void {
@@ -48,5 +62,6 @@ export class NavbarComponent {
   logout(){
     this.teacherService.logoutTeacher();
     this.loggedIn = false;
+    this.router.navigateByUrl('/');
   }
 }

@@ -3,6 +3,7 @@
         <h1>{{course.name}}</h1>
         <a [routerLink]="['/courses', course.id, 'edit']"><fa-icon [icon]="faPencil"></fa-icon></a>
     </div>
+    <h3>Teacher: {{course.teacher?.name}}</h3>
     <p>{{course.schoolYear}}</p>
     <div class="container">
         <h3>Class Overview</h3>

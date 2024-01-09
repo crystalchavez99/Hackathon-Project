@@ -3,6 +3,8 @@ import { Subscription } from 'rxjs';
 import { Teacher } from '../../models/teacher';
 import { TeacherService } from '../../services/teacher.service';
 import { Router } from '@angular/router';
+import { Student } from '../../models/student';
+import { StudentService } from '../../services/student.service';
 
 @Component({
   selector: 'app-register',
@@ -10,9 +12,13 @@ import { Router } from '@angular/router';
   styleUrl: './register.component.css'
 })
 export class RegisterComponent {
-  model: Teacher;
+  model: Teacher | Student;
   registerTeacherSub?: Subscription;
-  constructor(private teacherService: TeacherService, private router: Router){
+  registerStudentSub?: Subscription;
+  isStudent = false;
+  isTeacher = false;
+  errors: any;
+  constructor(private teacherService: TeacherService, private router: Router, private studentService: StudentService){
     this.model ={
       name: '',
       email: '',
@@ -20,14 +26,39 @@ export class RegisterComponent {
     }
   }
   submit(){
-    this.registerTeacherSub = this.teacherService.registerTeacher(this.model).subscribe({
-      next: (response) =>{
-        this.router.navigateByUrl('/')
-      }
-    });
+    if(this.isTeacher == true){
+      this.registerTeacherSub = this.teacherService.registerTeacher(this.model).subscribe({
+        next: (response) =>{
+          this.router.navigateByUrl('/')
+        },
+        error: e =>{
+          this.errors = e.error.errors;
+        }
+      });
+    }else if(this.isStudent == true){
+      this.registerStudentSub = this.studentService.registerStudent(this.model).subscribe({
+        next: (response) =>{
+          this.router.navigateByUrl('/')
+        },
+        error: e =>{
+          this.errors = e.error.errors;
+        }
+      });
+    }
+
   }
 
   ngOnDestroy(): void {
    this.registerTeacherSub?.unsubscribe();
+   this.registerStudentSub?.unsubscribe();
+  }
+
+  teacherRole(){
+    this.isTeacher = true;
+    this.isStudent = false;
+  }
+  studentRole(){
+    this.isTeacher = false;
+    this.isStudent = true;
   }
 }

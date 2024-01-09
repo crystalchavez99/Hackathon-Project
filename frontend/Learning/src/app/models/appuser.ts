@@ -1,4 +1,4 @@
 export class AppUser{
-  username: string | undefined;
+  email: string | undefined;
   token: string | undefined;
 }

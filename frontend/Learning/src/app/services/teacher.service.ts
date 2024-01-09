@@ -31,6 +31,11 @@ export class TeacherService {
     );
   }
 
+
+  getTeacher(email: string): Observable<Teacher>{
+    return this.http.get<Teacher>(`https://localhost:7232/api/teachers/${email}`);
+  }
+
   setCurrentTeacher(teacher: AppUser){
     this.currentTeacher.next(teacher);
   }

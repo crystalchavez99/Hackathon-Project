@@ -5,6 +5,7 @@ import { Subscription } from 'rxjs';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { faPencilAlt } from '@fortawesome/free-solid-svg-icons';
+import { Teacher } from '../../models/teacher';
 
 @Component({
   selector: 'app-course-details',
@@ -14,6 +15,7 @@ import { faPencilAlt } from '@fortawesome/free-solid-svg-icons';
 export class CourseDetailsComponent implements OnInit{
   id: string | null = null;
   course?: Course;
+  teacher?: Teacher;
   params?: Subscription;
   faPencil = faPencilAlt;
 
@@ -28,6 +30,7 @@ export class CourseDetailsComponent implements OnInit{
           .subscribe({
             next: (result: Course) =>{
               this.course = result;
+              //this.teacher = this.course.teacher;
               console.log(this.course)
             }
           })

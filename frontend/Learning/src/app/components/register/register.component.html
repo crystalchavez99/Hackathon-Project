@@ -1,9 +1,21 @@
-<div class="container">
-    <div class="border">
-        <h1>Register Teacher Account</h1>
+<div class="container mt-lg-5">
+    <div class="text-center">
+        <h1>Register Account</h1>
         <p>Enter your name, email, and create a password.</p>
     </div>
-    <form class="border border-primary" #form="ngForm" (ngSubmit)="submit()">
+    <div class="m-3 d-flex justify-content-center">
+      <button class="btn btn-outline-dark" (click)="teacherRole()" [ngClass]="isTeacher == true ? 'active' : '' ">Teacher</button>
+      <button class="btn btn-outline-dark" (click)="studentRole()" [ngClass]="isStudent == true ? 'active' : '' ">Student</button>
+    </div>
+    <div *ngIf="errors">
+      <div *ngFor="let error of errors.Email">
+        <p class="text-danger">{{error}}</p>
+      </div>
+      <div *ngFor="let error of errors.Password">
+        <p class="text-danger">{{error}}</p>
+      </div>
+    </div>
+    <form #form="ngForm" (ngSubmit)="submit()" *ngIf="isTeacher">
         <div class="mt-1">
             <div class="mt-3">
                 <label for="" class="form-label">Full Name</label>
@@ -22,4 +34,23 @@
             </div>
         </div>
     </form>
+    <form #form="ngForm" (ngSubmit)="submit()" *ngIf="isStudent">
+      <div class="mt-1">
+          <div class="mt-3">
+              <label for="" class="form-label">Full Name</label>
+          <input type="text" name="studentName" id="studentName" class="form-control" placeholder="Enter name" [(ngModel)]="model.name">
+          </div>
+          <div class="mt-3">
+              <label for="" class="form-label">Email</label>
+          <input type="email" name="studentEmail" id="studentEmail" class="form-control" placeholder="Enter a email" [(ngModel)]="model.email">
+          </div>
+          <div class="mt-3">
+              <label for="" class="form-label">Password</label>
+          <input type="password" name="studentPassword" id="studentPassword" class="form-control" placeholder="Enter password" [(ngModel)]="model.password">
+          </div>
+          <div class="mt-3">
+              <button type="submit" class="btn btn-success">Submit</button>
+          </div>
+      </div>
+  </form>
 </div>
