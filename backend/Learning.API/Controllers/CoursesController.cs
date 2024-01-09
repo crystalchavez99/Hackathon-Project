@@ -18,10 +18,10 @@ namespace Learning.API.Controllers
         {
             _context = context;
         }
-        [HttpGet]
-        public async Task<ActionResult<List<Course>>> GetCourses()
+        [HttpGet()]
+        public async Task<ActionResult<List<Course>>> GetCourses(int teacherId)
         {
-            return Ok(await _context.Courses.Include(c => c.Teacher).ToListAsync());
+            return Ok(await _context.Courses.Where(c => c.TeacherId == teacherId).ToListAsync());
         }
 
         

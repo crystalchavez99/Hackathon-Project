@@ -10,8 +10,8 @@ export class CourseService {
 
   constructor(private http:HttpClient) { }
 
-  getCourses(): Observable<Course[]>{
-    return this.http.get<Course[]>("https://localhost:7232/api/courses");
+  getCourses(teacherId: number): Observable<Course[]>{
+    return this.http.get<Course[]>(`https://localhost:7232/api/courses?teacherId=${teacherId}`);
   }
 
   getCourse(id:string): Observable<Course>{
