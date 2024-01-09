@@ -43,6 +43,7 @@ export class RegisterComponent {
 
   ngOnDestroy(): void {
    this.registerTeacherSub?.unsubscribe();
+   this.registerStudentSub?.unsubscribe();
   }
 
   teacherRole(){
