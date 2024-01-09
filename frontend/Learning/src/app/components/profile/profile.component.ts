@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { TeacherService } from '../../services/teacher.service';
 import { Teacher } from '../../models/teacher';
+import { StudentService } from '../../services/student.service';
+import { Student } from '../../models/student';
 
 @Component({
   selector: 'app-profile',
@@ -8,8 +10,11 @@ import { Teacher } from '../../models/teacher';
   styleUrl: './profile.component.css'
 })
 export class ProfileComponent implements OnInit {
-  teacher: any = {};
-  constructor(private teacherService: TeacherService){
+  user: any = {};
+  //student: any = {};
+  isStudent = false;
+  isTeacher = false;
+  constructor(private teacherService: TeacherService, private studentService: StudentService){
 
   }
 
@@ -21,8 +26,19 @@ export class ProfileComponent implements OnInit {
     this.teacherService.getTeacher(userParse.email)
     .subscribe({
       next: (result: Teacher) =>{
-        this.teacher = result;
-        console.log(this.teacher)
+        this.user = result;
+        this.isStudent = false;
+        this.isTeacher = true;
+        console.log(this.user)
+      }
+    })
+    this.studentService.getStudent(userParse.email)
+    .subscribe({
+      next: (result: Student) =>{
+        this.user = result;
+        this.isStudent = true;
+        this.isTeacher = false;
+        console.log(this.user)
       }
     })
   }

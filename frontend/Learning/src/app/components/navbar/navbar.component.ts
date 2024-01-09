@@ -60,5 +60,6 @@ export class NavbarComponent {
   logout(){
     this.teacherService.logoutTeacher();
     this.loggedIn = false;
+    this.router.navigateByUrl('/');
   }
 }
