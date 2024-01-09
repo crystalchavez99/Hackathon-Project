@@ -26,5 +26,22 @@ namespace Learning.API.Interface
             var token = tokenHandler.CreateToken(tokenDesc);
             return tokenHandler.WriteToken(token);
         }
+        public string CreateToken(Student user)
+        {
+            var claims = new List<Claim>
+            {
+                new Claim(JwtRegisteredClaimNames.Email, user.Email)
+            };
+            var creds = new SigningCredentials(_symmetricSecurityKey, SecurityAlgorithms.HmacSha256);
+            var tokenDesc = new SecurityTokenDescriptor
+            {
+                Subject = new ClaimsIdentity(claims),
+                Expires = DateTime.Now.AddDays(7),
+                SigningCredentials = creds
+            };
+            var tokenHandler = new JwtSecurityTokenHandler();
+            var token = tokenHandler.CreateToken(tokenDesc);
+            return tokenHandler.WriteToken(token);
+        }
     }
 }
