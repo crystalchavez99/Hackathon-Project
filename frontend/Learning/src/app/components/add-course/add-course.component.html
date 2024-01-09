@@ -3,6 +3,17 @@
         <h1>Create Course</h1>
         <p>Enter a class name, level, and school year.</p>
     </div>
+    <div *ngIf="errors">
+      <div *ngFor="let error of errors.Name">
+        <p class="text-danger">{{error}}</p>
+      </div>
+      <div *ngFor="let error of errors.Level">
+        <p class="text-danger">{{error}}</p>
+      </div>
+      <div *ngFor="let error of errors.SchoolYear">
+        <p class="text-danger">{{error}}</p>
+      </div>
+    </div>
     <form class="border border-primary" #form="ngForm" (ngSubmit)="submit()">
         <div class="mt-1">
             <div class="mt-3">

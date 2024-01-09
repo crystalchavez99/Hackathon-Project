@@ -5,7 +5,6 @@ import { Subscription } from 'rxjs';
 import { Router } from '@angular/router';
 import { StudentService } from '../../services/student.service';
 
-
 @Component({
   selector: 'app-navbar',
   templateUrl: './navbar.component.html',
@@ -17,7 +16,6 @@ export class NavbarComponent {
   loginTeacherSub?: Subscription;
   loginStudentSub?: Subscription;
   constructor(private teacherService: TeacherService, private router: Router, private studentService: StudentService){
-
     // this.model ={
     //   name: '',
     //   email: '',
