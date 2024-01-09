@@ -12,6 +12,8 @@ import { Router } from '@angular/router';
 export class RegisterComponent {
   model: Teacher;
   registerTeacherSub?: Subscription;
+  isStudent = false;
+  isTeacher = false;
   constructor(private teacherService: TeacherService, private router: Router){
     this.model ={
       name: '',
@@ -29,5 +31,14 @@ export class RegisterComponent {
 
   ngOnDestroy(): void {
    this.registerTeacherSub?.unsubscribe();
+  }
+
+  teacherRole(){
+    this.isTeacher = true;
+    this.isStudent = false;
+  }
+  studentRole(){
+    this.isTeacher = false;
+    this.isStudent = true;
   }
 }
