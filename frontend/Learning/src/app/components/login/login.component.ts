@@ -10,6 +10,7 @@ import { StudentService } from '../../services/student.service';
   templateUrl: './login.component.html',
   styleUrl: './login.component.css'
 })
+
 export class LoginComponent implements OnChanges {
   model: any;
   loggedIn = false;
