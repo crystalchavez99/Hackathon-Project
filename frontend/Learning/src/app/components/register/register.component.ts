@@ -3,6 +3,8 @@ import { Subscription } from 'rxjs';
 import { Teacher } from '../../models/teacher';
 import { TeacherService } from '../../services/teacher.service';
 import { Router } from '@angular/router';
+import { Student } from '../../models/student';
+import { StudentService } from '../../services/student.service';
 
 @Component({
   selector: 'app-register',
@@ -10,11 +12,12 @@ import { Router } from '@angular/router';
   styleUrl: './register.component.css'
 })
 export class RegisterComponent {
-  model: Teacher;
+  model: Teacher | Student;
   registerTeacherSub?: Subscription;
+  registerStudentSub?: Subscription;
   isStudent = false;
   isTeacher = false;
-  constructor(private teacherService: TeacherService, private router: Router){
+  constructor(private teacherService: TeacherService, private router: Router, private studentService: StudentService){
     this.model ={
       name: '',
       email: '',
@@ -22,11 +25,20 @@ export class RegisterComponent {
     }
   }
   submit(){
-    this.registerTeacherSub = this.teacherService.registerTeacher(this.model).subscribe({
-      next: (response) =>{
-        this.router.navigateByUrl('/')
-      }
-    });
+    if(this.isTeacher == true){
+      this.registerTeacherSub = this.teacherService.registerTeacher(this.model).subscribe({
+        next: (response) =>{
+          this.router.navigateByUrl('/')
+        }
+      });
+    }else if(this.isStudent == true){
+      this.registerStudentSub = this.studentService.registerStudent(this.model).subscribe({
+        next: (response) =>{
+          this.router.navigateByUrl('/')
+        }
+      });
+    }
+
   }
 
   ngOnDestroy(): void {
