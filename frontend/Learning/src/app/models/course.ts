@@ -1,7 +1,10 @@
+import { Teacher } from "./teacher";
+
 export class Course{
     id?: number;
     name!: string;
     level!: string;
     schoolYear!: string;
-    //teacherId!: number;
+    teacherId?: number;
+    //teacher!: Teacher;
 }

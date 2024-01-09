@@ -38,6 +38,8 @@ export class EditComponentComponent implements OnInit, OnDestroy{
       name: this.course?.name || '',
       level: this.course?.level || '',
       schoolYear: this.course?.schoolYear || '',
+      teacherId: this.course?.teacherId || undefined,
+     // teacher: this.course?.teacher || {}
     }
     if(this.id){
       this.editCourseSub = this.courseService.updateCourse(this.id, updateCourse)
@@ -60,7 +62,7 @@ export class EditComponentComponent implements OnInit, OnDestroy{
       })
     }
   }
-  
+
   ngOnDestroy(): void{
     this.editCourseSub?.unsubscribe();
   }
