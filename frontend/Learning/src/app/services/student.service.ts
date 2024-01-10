@@ -3,6 +3,7 @@ import { BehaviorSubject, Observable, map } from 'rxjs';
 import { AppUser } from '../models/appuser';
 import { HttpClient } from '@angular/common/http';
 import { Student } from '../models/student';
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -14,11 +15,11 @@ export class StudentService {
   constructor(private http:HttpClient) { }
   registerStudent(model: Student): Observable<void>{
     console.log(model)
-    return this.http.post<void>(`https://localhost:7232/api/students/register`,model);
+    return this.http.post<void>(`${environment.baseApiUrl}/api/students/register`,model);
   }
 
   loginStudent(model: any): Observable<void>{
-    return this.http.post<AppUser>(`https://localhost:7232/api/students/login`,model).pipe(
+    return this.http.post<AppUser>(`${environment.baseApiUrl}/api/students/login`,model).pipe(
       map((response: any) =>{
         console.log(response)
         const student = response;
@@ -31,7 +32,7 @@ export class StudentService {
   }
 
   getStudent(email: string): Observable<Student>{
-    return this.http.get<Student>(`https://localhost:7232/api/students/${email}`);
+    return this.http.get<Student>(`${environment.baseApiUrl}/api/students/${email}`);
   }
 
   setCurrentStudent(student: AppUser){
