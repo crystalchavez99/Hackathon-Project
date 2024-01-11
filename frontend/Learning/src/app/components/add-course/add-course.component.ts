@@ -47,4 +47,7 @@ export class AddCourseComponent implements OnDestroy{
   ngOnDestroy(): void {
    this.addCourseSub?.unsubscribe();
   }
+  cancelEdit(): void{
+    this.router.navigateByUrl(`/courses`)
+  }
 }
