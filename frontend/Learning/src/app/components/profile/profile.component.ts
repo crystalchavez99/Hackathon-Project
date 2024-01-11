@@ -28,7 +28,7 @@ export class ProfileComponent implements OnInit {
     .subscribe({
       next: (result: Teacher) =>{
         this.user = result;
-        this.role = Teacher.name;
+        this.role = "Teacher";
         this.isStudent = false;
         this.isTeacher = true;
         console.log(this.user, this.role)
@@ -40,7 +40,7 @@ export class ProfileComponent implements OnInit {
         this.user = result;
         this.isStudent = true;
         this.isTeacher = false;
-        this.role = Student.name;
+        this.role = "Student";
         console.log(this.user, this.role)
       }
     })

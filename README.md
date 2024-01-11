@@ -1,7 +1,7 @@
-# Hackathon-Project
+# Open Learn
 
 **Table of Contents**
-- [Hackathon-Project](#hackathon-project)
+- [Open Learn](#open-learn)
   - [Live Link](#live-link)
   - [About the Project](#about-the-project)
   - [Wiki](#wiki)
@@ -13,7 +13,7 @@
 [Access Product](https://learning-platform-14b59.web.app/)
 
 ## About the Project
-Online Learning Platform/Community aimed to support teachings being able to gain access to materials and provide classroom support.
+Welcome to Open Learn! We aim to support students being able to gain access to materials and teachers to provide classroom support.
 
 ## Wiki
 Access Wiki: Click on Wiki Tab or [This Link](https://github.com/crystalchavez99/Hackathon-Project/wiki)
