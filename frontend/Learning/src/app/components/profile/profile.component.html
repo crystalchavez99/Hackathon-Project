@@ -3,7 +3,8 @@
   <div class="container d-flex justify-content-between align-items-center">
    <div>
     <h2>{{user.name}}</h2>
-    <h3>Role: {{role}}</h3>
+    <h3 *ngIf="role === 'Teacher'">Role: Teacher</h3>
+    <h3 *ngIf="role === 'Student'">Role: Student</h3>
     <p>Email: {{user.email}}</p>
    </div>
     <div>
