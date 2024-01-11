@@ -1,15 +1,16 @@
 # Hackathon-Project
 
 **Table of Contents**
-- [Live Link](#live-link)
-- [About The Project](#about-the-project)
-- [Wiki](#wiki)
-- [Technology Stack](#technology-stack)
-- [Features](#features)
-- [Future Ideas](#future-features)
+- [Hackathon-Project](#hackathon-project)
+  - [Live Link](#live-link)
+  - [About the Project](#about-the-project)
+  - [Wiki](#wiki)
+  - [Technology Stack](#technology-stack)
+  - [Features](#features)
+  - [Future Features](#future-features)
 
 ## Live Link
-Access Product: Link
+[Access Product](https://learning-platform-14b59.web.app/)
 
 ## About the Project
 Online Learning Platform/Community aimed to support teachings being able to gain access to materials and provide classroom support.
@@ -25,11 +26,13 @@ Access Wiki: Click on Wiki Tab or [This Link](https://github.com/crystalchavez99
 * CSS
 * C#
 * Typescript
-* Heroku
-* SQLite
+* Firebase
+* Azure
+* SQL Server 19+
 
 ## Features
 * ### Courses
+* ### User(Teacher and Student)
 
 ## Future Features
 * Authorization Between Student and Teacher

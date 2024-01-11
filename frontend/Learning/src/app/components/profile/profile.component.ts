@@ -14,6 +14,7 @@ export class ProfileComponent implements OnInit {
   //student: any = {};
   isStudent = false;
   isTeacher = false;
+  role: any;
   constructor(private teacherService: TeacherService, private studentService: StudentService){
 
   }
@@ -27,9 +28,10 @@ export class ProfileComponent implements OnInit {
     .subscribe({
       next: (result: Teacher) =>{
         this.user = result;
+        this.role = Teacher.name;
         this.isStudent = false;
         this.isTeacher = true;
-        console.log(this.user)
+        console.log(this.user, this.role)
       }
     })
     this.studentService.getStudent(userParse.email)
@@ -38,7 +40,8 @@ export class ProfileComponent implements OnInit {
         this.user = result;
         this.isStudent = true;
         this.isTeacher = false;
-        console.log(this.user)
+        this.role = Student.name;
+        console.log(this.user, this.role)
       }
     })
   }
