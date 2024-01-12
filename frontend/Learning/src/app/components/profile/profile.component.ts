@@ -23,7 +23,6 @@ export class ProfileComponent implements OnInit {
     const userString = localStorage.getItem('user');
     if(!userString) return;
     const userParse: any = JSON.parse(userString);
-    console.log(userParse.email)
     this.teacherService.getTeacher(userParse.email)
     .subscribe({
       next: (result: Teacher) =>{
@@ -31,7 +30,6 @@ export class ProfileComponent implements OnInit {
         this.role = "Teacher";
         this.isStudent = false;
         this.isTeacher = true;
-        console.log(this.user, this.role)
       }
     })
     this.studentService.getStudent(userParse.email)
@@ -41,7 +39,6 @@ export class ProfileComponent implements OnInit {
         this.isStudent = true;
         this.isTeacher = false;
         this.role = "Student";
-        console.log(this.user, this.role)
       }
     })
   }

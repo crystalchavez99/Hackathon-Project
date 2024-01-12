@@ -31,7 +31,6 @@ export class CourseDetailsComponent implements OnInit{
             next: (result: Course) =>{
               this.course = result;
               //this.teacher = this.course.teacher;
-              console.log(this.course)
             }
           })
         }

@@ -19,15 +19,13 @@ export class CourseListComponent implements OnInit{
     const userString = localStorage.getItem('user');
     if(!userString) return;
     const userParse: any = JSON.parse(userString);
-    console.log(userParse.email)
     this.teacherService.getTeacher(userParse.email)
     .subscribe({
       next: (result: Teacher) =>{
         this.teacher = result;
-        this.role = Teacher.name;
+        this.role = "Teacher";
         this.courseService.getCourses(this.teacher.id).subscribe((result: Course[])=>{
           this.courses = result;
-          console.log(this.courses.length)
         })
       }
     })

@@ -19,7 +19,6 @@ export class CourseService {
     return this.http.get<Course>(`${environment.baseApiUrl}/api/courses/${id}`);
   }
   addCourse(model: Course): Observable<void>{
-    console.log(model)
     return this.http.post<void>(`${environment.baseApiUrl}/api/courses`, model);
   }
   deleteCourse(id:string): Observable<void>{
