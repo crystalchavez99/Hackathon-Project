@@ -27,29 +27,20 @@ export class NavbarComponent {
   }
   getCurrentTeacher(){
     this.teacherService.currentTeacher$.subscribe({
-      next: teacher => this.loggedIn = !!teacher,
-      error: error => console.log(error)
+      next: teacher => this.loggedIn = !!teacher
     })
   }
   submit(){
     this.loginTeacherSub = this.teacherService.loginTeacher(this.model).subscribe({
       next: (response) =>{
-        console.log(response)
         this.loggedIn = true;
         //this.router.navigateByUrl('/')
-      },
-      error: (e) =>{
-        console.log(e)
       }
     });
     this.loginStudentSub = this.studentService.loginStudent(this.model).subscribe({
       next: (response) =>{
-        console.log(response)
         this.loggedIn = true;
         this.router.navigateByUrl('/')
-      },
-      error: (e) =>{
-        console.log(e)
       }
     });
   }

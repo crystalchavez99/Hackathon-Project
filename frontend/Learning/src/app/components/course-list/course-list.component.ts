@@ -13,16 +13,17 @@ import { TeacherService } from '../../services/teacher.service';
 export class CourseListComponent implements OnInit{
   courses: Course[] = [];
   teacher: any = {};
+  role: any;
   constructor(private courseService: CourseService, private router: Router,private teacherService: TeacherService){}
   ngOnInit(): void{
     const userString = localStorage.getItem('user');
     if(!userString) return;
     const userParse: any = JSON.parse(userString);
-    console.log(userParse.email)
     this.teacherService.getTeacher(userParse.email)
     .subscribe({
       next: (result: Teacher) =>{
         this.teacher = result;
+        this.role = "Teacher";
         this.courseService.getCourses(this.teacher.id).subscribe((result: Course[])=>{
           this.courses = result;
         })

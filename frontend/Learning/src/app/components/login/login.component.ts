@@ -26,27 +26,22 @@ export class LoginComponent implements OnChanges {
   }
 
   ngOnChanges(changes: SimpleChanges) {
-    console.log(changes['email'].currentValue)
   }
   submit(){
     this.loginTeacherSub = this.teacherService.loginTeacher(this.model).subscribe({
       next: (response) =>{
-        console.log(response)
         this.loggedIn = true;
         this.router.navigateByUrl('/')
       },
       error: (e) =>{
-        console.log(e)
       }
     });
     this.loginStudentSub = this.studentService.loginStudent(this.model).subscribe({
       next: (response) =>{
-        console.log(response)
         this.loggedIn = true;
         this.router.navigateByUrl('/')
       },
       error: (e) =>{
-        console.log(e)
       }
     });
   }

@@ -22,12 +22,10 @@ export class AddCourseComponent implements OnDestroy{
     const userString = localStorage.getItem('user');
     if(!userString) return;
     const userParse: any = JSON.parse(userString);
-    console.log(userParse.email)
     this.teacherService.getTeacher(userParse.email)
     .subscribe({
       next: (result: Teacher) =>{
         this.teacher = result;
-        console.log(this.teacher)
       }
     })
   }
@@ -46,5 +44,8 @@ export class AddCourseComponent implements OnDestroy{
 
   ngOnDestroy(): void {
    this.addCourseSub?.unsubscribe();
+  }
+  cancelEdit(): void{
+    this.router.navigateByUrl(`/courses`)
   }
 }

@@ -1,7 +1,25 @@
-<div class="container border border-black">
-  <h1>Personel Information</h1>
-  <div class="container">
+<div class="container">
+  <h1>Personal Information</h1>
+  <div class="container d-flex justify-content-between align-items-center">
+   <div>
     <h2>{{user.name}}</h2>
+    <h3 *ngIf="role === 'Teacher'">Role: Teacher</h3>
+    <h3 *ngIf="role === 'Student'">Role: Student</h3>
     <p>Email: {{user.email}}</p>
+   </div>
+    <div>
+      <i class="bi bi-person-circle" style="font-size: 5rem; color: cornflowerblue;"></i>
+    </div>
   </div>
+  <hr>
+  <div class="container">
+    <div class="jumbotron">
+      <h1 class="display-4">Hello, user!</h1>
+      <p class="lead">This is a simple jumbotrain to feature content or information for this profile.</p>
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.r.</p>
+      <p class="lead">
+        <a class="btn btn-primary btn-lg disabled" href="#" role="button">Learn more</a>
+      </p>
+    </div>
+</div>
 </div>

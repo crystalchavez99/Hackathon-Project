@@ -14,6 +14,7 @@ export class ProfileComponent implements OnInit {
   //student: any = {};
   isStudent = false;
   isTeacher = false;
+  role: any;
   constructor(private teacherService: TeacherService, private studentService: StudentService){
 
   }
@@ -22,14 +23,13 @@ export class ProfileComponent implements OnInit {
     const userString = localStorage.getItem('user');
     if(!userString) return;
     const userParse: any = JSON.parse(userString);
-    console.log(userParse.email)
     this.teacherService.getTeacher(userParse.email)
     .subscribe({
       next: (result: Teacher) =>{
         this.user = result;
+        this.role = "Teacher";
         this.isStudent = false;
         this.isTeacher = true;
-        console.log(this.user)
       }
     })
     this.studentService.getStudent(userParse.email)
@@ -38,7 +38,7 @@ export class ProfileComponent implements OnInit {
         this.user = result;
         this.isStudent = true;
         this.isTeacher = false;
-        console.log(this.user)
+        this.role = "Student";
       }
     })
   }

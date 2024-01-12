@@ -1,5 +1,5 @@
-<div class="container">
-    <div class="border">
+<div class="container mt-5">
+    <div>
         <h1>Create Course</h1>
         <p>Enter a class name, level, and school year.</p>
     </div>
@@ -14,7 +14,7 @@
         <p class="text-danger">{{error}}</p>
       </div>
     </div>
-    <form class="border border-primary" #form="ngForm" (ngSubmit)="submit()">
+    <form #form="ngForm" (ngSubmit)="submit()">
         <div class="mt-1">
             <div class="mt-3">
                 <label for="" class="form-label">Course Name</label>
@@ -28,9 +28,10 @@
                 <label for="" class="form-label">School Year</label>
             <input type="text" name="courseSchoolYear" id="courseSchoolYear" class="form-control" placeholder="Enter a school year" [(ngModel)]="model.schoolYear">
             </div>
-            <div class="mt-3">
-                <button type="submit" class="btn btn-success">Submit</button>
-            </div>
+            <div class="mt-3 d-flex justify-content-between">
+              <button type="submit" class="btn btn-success">Submit</button>
+              <button type="button" class="btn btn-light border" (click)="cancelEdit()">Cancel</button>
+          </div>
         </div>
     </form>
 </div>
