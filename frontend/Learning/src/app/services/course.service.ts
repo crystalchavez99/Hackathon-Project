@@ -3,6 +3,7 @@ import { Course } from '../models/course';
 import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '../../environments/environment';
+import { Student } from '../models/student';
 
 @Injectable({
   providedIn: 'root'
@@ -26,5 +27,9 @@ export class CourseService {
   }
   updateCourse(id: string, model: Course): Observable<Course>{
     return this.http.put<Course>(`${environment.baseApiUrl}/api/courses/${id}`, model)
+  }
+
+  getCourseStudents(id:number): Observable<Student[]>{
+    return this.http.get<Student[]>(`${environment.baseApiUrl}/api/courses/${id}/enrollments`);
   }
 }

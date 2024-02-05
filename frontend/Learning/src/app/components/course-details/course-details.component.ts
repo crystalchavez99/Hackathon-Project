@@ -1,11 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { Course } from '../../models/course';
 import { CourseService } from '../../services/course.service';
-import { Subscription } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { faPencilAlt } from '@fortawesome/free-solid-svg-icons';
 import { Teacher } from '../../models/teacher';
+import { Student } from '../../models/student';
 
 @Component({
   selector: 'app-course-details',
@@ -18,7 +19,7 @@ export class CourseDetailsComponent implements OnInit{
   teacher?: Teacher;
   params?: Subscription;
   faPencil = faPencilAlt;
-
+  students:Student[] = [];
   constructor(private courseService: CourseService, private router: Router, private route: ActivatedRoute){}
 
   ngOnInit(): void{
@@ -32,9 +33,13 @@ export class CourseDetailsComponent implements OnInit{
               this.course = result;
               //this.teacher = this.course.teacher;
             }
-          })
+          });
+          //console.log(this.id)
+          this.courseService.getCourseStudents(Number(this.id))
+          .subscribe(enrollments => this.students = enrollments);
         }
       }
     })
   }
+
 }
