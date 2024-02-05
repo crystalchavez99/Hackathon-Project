@@ -30,6 +30,11 @@ namespace Learning.API.Controllers
         {
             var found = await _context.Courses.FindAsync(id);
             _context.Entry(found).Reference(c => c.Teacher).Load();
+
+            //var found = await _context.Courses
+            //.Include(course => course.Enrollments)
+            //.FirstOrDefaultAsync(course => course.Id == id);
+
             if (found == null)
             {
                 return BadRequest();
@@ -81,6 +86,22 @@ namespace Learning.API.Controllers
             await _context.SaveChangesAsync();
             return Ok(await _context.Courses.ToListAsync());
 
+        }
+
+        [HttpGet("{courseId}/enrollments")]
+        public async Task<ActionResult<List<Student>>> GetCourseEnrollments(int courseId)
+        {
+            var courseEnrollments = await _context.Enrollments
+                .Where(e => e.CourseId == courseId)
+                .Select(e => e.Student)
+                .ToListAsync();
+
+            if (courseEnrollments == null || !courseEnrollments.Any())
+            {
+                return NotFound($"No students enrolled in course with ID {courseId}");
+            }
+
+            return Ok(courseEnrollments);
         }
     }
 

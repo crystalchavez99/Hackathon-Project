@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Text.Json.Serialization;
 
 
 namespace Learning.API.Models
@@ -15,9 +16,12 @@ namespace Learning.API.Models
         public string? SchoolYear { get; set; }
 
         public int? TeacherId { get; set; }
+
+
         [ForeignKey("TeacherId")]
         public Teacher? Teacher { get; set; }
 
+        [JsonIgnore]
         public ICollection<Enrollment>? Enrollments { get; set; }
 
     }
